@@ -17,7 +17,7 @@
 
         body {
             margin: 0;
-            padding: 20px 0; /* 增加上下間距 */
+            padding: 20px 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,14 +25,13 @@
             background-color: var(--bg-color);
             font-family: system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
             color: var(--text-color);
-            /* --- 關鍵修正：允許內容超出時捲動，但隱藏橫向捲軸 --- */
             overflow-x: hidden;
             overflow-y: auto; 
             position: relative;
         }
 
         .background-text {
-            position: fixed; /* 改為 fixed 讓它固定在背景，滑動時不會跟著跑 */
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -63,7 +62,7 @@
             z-index: 10;
             position: relative;
             backdrop-filter: blur(2px);
-            margin: 20px auto; /* 確保在長頁面時有邊距 */
+            margin: 20px auto;
         }
 
         h1 {
@@ -83,11 +82,10 @@
             animation: slideUp 1.2s ease-out forwards;
         }
 
-        /* --- 照片比例縮小修正 --- */
         .birthday-photo {
-            width: 85%; /* 比例縮小至 85% */
+            width: 85%;
             display: block;
-            margin: 0 auto 25px auto; /* 居中並留白 */
+            margin: 0 auto 25px auto;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             border: 5px solid #fff; 
@@ -112,7 +110,7 @@
         }
 
         .floating-heart {
-            position: fixed; /* 改為 fixed 確保飄浮物參考螢幕而不是內容高度 */
+            position: fixed;
             font-size: 20px;
             color: var(--heart-color);
             pointer-events: none;
@@ -137,6 +135,10 @@
 </head>
 <body>
 
+    <audio id="bgm" loop>
+        <source src="S.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="background-text">HAPPY<br>BIRTHDAY</div>
 
     <div class="container">
@@ -152,15 +154,24 @@
             <p>生日快樂！恭喜我們再次打破遠距離魔咒，讓今年依然能陪在彼此身邊。希望新的一年，你的一切都好。</p>
             <p>邁入 28 歲，是個全新的起點。雖然認識十幾年了，偶爾還是會像以前那樣鬧彆扭、吵到快翻船，但最慶幸的是，我們最後總能好好溝通 (吧?) 😊</p>
             <p>新的一年，希望你的煩惱少一點，快樂多很多點。謝謝你一直以來的包容與陪伴，在我心中，你始終是最棒的榜樣，也是最無可取代的伴侶。我很珍惜有你的每一天。</p>
-            <p>下周見啦😍 <p>
+            <p>下周見啦😍</p>
             <div class="footer-sign">Happy Birthday, My Best Partner ❤️❤️</div>
         </div>
     </div>
 
     <script>
         function openLetter() {
+            // 隱藏封面，顯示內容
             document.getElementById('cover').style.display = 'none';
             document.getElementById('content').style.display = 'block';
+            
+            // 播放音樂 (檔名 S.mp3)
+            const music = document.getElementById('bgm');
+            music.play().catch(function(error) {
+                console.log("播放被瀏覽器阻擋，這通常發生在未經使用者互動時，但按鈕點擊應可解決此問題。");
+            });
+
+            // 啟動飄浮圖案
             startHearts();
         }
 
@@ -181,4 +192,3 @@
     </script>
 </body>
 </html>
-
