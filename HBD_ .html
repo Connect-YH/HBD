@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD to My Best Partner</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        :root {
+            --bg-color: #f8f4f1;
+            --card-bg: #ffffff;
+            --text-color: #5d524a;
+            --accent-color: #bfa08a;
+            --heart-color: #d9a7a7;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            font-family: system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+            color: var(--text-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- 這裡是大大的背景草寫字樣設定 --- */
+        .background-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 15vw; /* 改用 vw，隨螢幕寬度自動變大 */
+            color: rgba(191, 160, 138, 0.06); /* 更淡一點，避免干擾主要文字 */
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            text-align: center;
+            line-height: 0.7; /* 縮小行高讓兩個單字靠更近，更有整體感 */
+            letter-spacing: -2px;
+        }
+
+        /* 針對桌機/大螢幕再加強 */
+        @media (min-width: 1024px) {
+            .background-text {
+                font-size: 18em; 
+            }
+        }
+
+        /* 針對手機縮小一些避免完全切掉 */
+        @media (max-width: 480px) {
+            .background-text {
+                font-size: 5.5em; 
+                line-height: 0.9;
+            }
+        }
+
+        .container {
+            width: 85%;
+            max-width: 400px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.95); /* 稍微透明增加層次感 */
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            backdrop-filter: blur(2px); /* 輕微模糊背景字，增加質感 */
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            line-height: 1.4;
+        }
+
+        .message-content {
+            display: none;
+            line-height: 1.8;
+            font-size: 1rem;
+            text-align: justify;
+            word-break: break-all;
+            animation: slideUp 1.2s ease-out forwards;
+        }
+
+        .message-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .btn-open {
+            padding: 14px 32px;
+            font-size: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(191, 160, 138, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-open:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(191, 160, 138, 0.4);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: var(--heart-color);
+            pointer-events: none;
+            z-index: 15;
+            bottom: -50px;
+            animation: floatUp 4.5s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .footer-sign {
+            margin-top: 25px;
+            text-align: right;
+            font-weight: 600;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-text">HAPPY<br>BIRTHDAY</div>
+
+    <div class="container">
+        <div id="cover">
+            <h1>HAPPY BIRTHDAY<br>佳勳</h1>
+            <p style="margin-bottom: 30px; font-size: 0.9rem; opacity: 0.7;">有一封溫暖的訊息待領取</p>
+            <button class="btn-open" onclick="openLetter()">點擊開啟</button>
+        </div>
+
+        <div id="content" class="message-content">
+            <p>Dear 佳勳：</p>
+            <p>生日快樂！恭喜我們再次打破遠距離魔咒！希望新的一年一切都好。</p>
+            <p>邁入 28 歲，又是個全新的起點。雖然認識十幾年了，偶爾還是會翻船鬧彆扭，但慶幸的是，最後都能好好溝通 (吧?) </p>
+            <p>新的一年，希望你的煩惱少一點，快樂多一些。謝謝你的陪伴，在我心中你一直是最棒的榜樣，也是最無可取代的伴侶，謝謝你啦～</p>
+            <div class="footer-sign">Happy Birthday, My Best Partner ❤️❤️ </div>
+        </div>
+    </div>
+
+    <script>
+        function openLetter() {
+            document.getElementById('cover').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            startHearts();
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                const icons = ['❤️', '✨', '🎈', '☁️', '🌸', '🎁', '🕯️'];
+                heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                heart.style.opacity = Math.random() * 0.4 + 0.4;
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 4500);
+            }, 450);
+        }
+    </script>
+</body>
+</html>
