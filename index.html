@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HBD to My Best Partner</title>
     <style>
+        /* 引入草寫字體 */
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
         :root {
@@ -29,50 +30,43 @@
             position: relative;
         }
 
-        /* --- 這裡是大大的背景草寫字樣設定 --- */
+        /* 背景大草寫字樣 */
         .background-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Dancing Script', cursive;
-            font-size: 15vw; /* 改用 vw，隨螢幕寬度自動變大 */
-            color: rgba(191, 160, 138, 0.06); /* 更淡一點，避免干擾主要文字 */
+            font-size: 15vw;
+            color: rgba(191, 160, 138, 0.06);
             white-space: nowrap;
             user-select: none;
             pointer-events: none;
             z-index: 1;
             text-align: center;
-            line-height: 0.7; /* 縮小行高讓兩個單字靠更近，更有整體感 */
+            line-height: 0.7;
             letter-spacing: -2px;
         }
 
-        /* 針對桌機/大螢幕再加強 */
         @media (min-width: 1024px) {
-            .background-text {
-                font-size: 18em; 
-            }
+            .background-text { font-size: 18em; }
         }
 
-        /* 針對手機縮小一些避免完全切掉 */
         @media (max-width: 480px) {
-            .background-text {
-                font-size: 5.5em; 
-                line-height: 0.9;
-            }
+            .background-text { font-size: 5.5em; line-height: 0.9; }
         }
 
         .container {
             width: 85%;
             max-width: 400px;
             padding: 40px 30px;
-            background: rgba(255, 255, 255, 0.95); /* 稍微透明增加層次感 */
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 24px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             text-align: center;
             z-index: 10;
             position: relative;
-            backdrop-filter: blur(2px); /* 輕微模糊背景字，增加質感 */
+            backdrop-filter: blur(2px);
         }
 
         h1 {
@@ -83,6 +77,7 @@
             line-height: 1.4;
         }
 
+        /* 內容區塊 */
         .message-content {
             display: none;
             line-height: 1.8;
@@ -90,6 +85,17 @@
             text-align: justify;
             word-break: break-all;
             animation: slideUp 1.2s ease-out forwards;
+        }
+
+        /* 照片樣式優化 */
+        .birthday-photo {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 5px solid #fff; /* 拍立得邊框感 */
+            box-sizing: border-box;
         }
 
         .message-content p {
@@ -154,6 +160,8 @@
         </div>
 
         <div id="content" class="message-content">
+            <img src="01.jpg" alt="Happy Birthday" class="birthday-photo">
+
             <p>Dear 佳勳：</p>
             <p>生日快樂！恭喜我們再次打破遠距離魔咒！希望新的一年一切都好。</p>
             <p>邁入 28 歲，又是個全新的起點。雖然認識十幾年了，偶爾還是會翻船鬧彆扭，但慶幸的是，最後都能好好溝通 (吧?) </p>
